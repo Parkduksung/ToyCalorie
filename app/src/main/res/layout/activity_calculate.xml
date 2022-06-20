@@ -5,13 +5,179 @@
 
     <data>
 
+        <import type="com.example.toycalorie.constant.ItemType" />
+
+        <variable
+            name="viewModel"
+            type="com.example.toycalorie.ui.calculate.CalculateViewModel" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.calculate.CalculateActivity">
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UnusedAttribute">
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent=".35"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias=".0"
+                app:lottie_autoPlay="true"
+                app:lottie_imageAssetsFolder="images"
+                app:lottie_rawRes="@raw/document" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField_height"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="키"
+                app:errorEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/filledTextField_weight"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintVertical_bias=".25"
+                app:layout_constraintWidth_percent=".4">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/height"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:text="@={viewModel.inputHeightLiveData}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField_weight"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="몸무게"
+                app:errorEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/filledTextField_height"
+                app:layout_constraintTop_toBottomOf="@id/image"
+                app:layout_constraintVertical_bias=".25"
+                app:layout_constraintWidth_percent=".4">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:text="@={viewModel.inputWeightLiveData}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField_age"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/filledTextField_height"
+                app:layout_constraintHorizontal_bias=".0"
+                app:layout_constraintStart_toStartOf="@id/filledTextField_height"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField_height"
+                app:layout_constraintVertical_bias=".1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoSizeMaxTextSize="30sp"
+                    android:autoSizeMinTextSize="5sp"
+                    android:autoSizeTextType="uniform"
+                    android:hint="연령"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:text="@={viewModel.inputAgeLiveData}"
+                    android:textSize="13sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:hint="성별"
+                app:layout_constraintBottom_toBottomOf="@id/filledTextField_age"
+                app:layout_constraintEnd_toEndOf="@id/filledTextField_weight"
+                app:layout_constraintStart_toStartOf="@id/filledTextField_weight"
+                app:layout_constraintTop_toTopOf="@id/filledTextField_age"
+                app:layout_constraintVertical_bias=".0">
+
+                <AutoCompleteTextView
+                    android:id="@+id/filled_exposed_dropdown_gender"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onClick="@{()->viewModel.hideInputTextField()}"
+                    app:itemType="@{ItemType.GENDER}"
+                    app:onItemClickListener="@{viewModel.inputItemPositionAdapter}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/filledTextField_exercise"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="평소의 운동량"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/filledTextField_weight"
+                app:layout_constraintStart_toStartOf="@id/filledTextField_height"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField_age"
+                app:layout_constraintVertical_bias=".2">
+
+                <AutoCompleteTextView
+                    android:id="@+id/filled_exposed_dropdown_exercise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:onClick="@{()->viewModel.hideInputTextField()}"
+                    app:itemType="@{ItemType.EXERCISE}"
+                    app:onItemClickListener="@{viewModel.inputItemPositionAdapter}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/button_yield"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="30dp"
+                android:autoSizeMaxTextSize="30sp"
+                android:autoSizeMinTextSize="15sp"
+                android:autoSizeTextType="uniform"
+                android:onClick="@{()->viewModel.yield()}"
+                android:text="판정"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="W,2:3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/filledTextField_exercise"
+                app:layout_constraintVertical_bias="1"
+                app:layout_constraintWidth_percent=".2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

@@ -15,6 +15,7 @@ interface CalorieDao {
     @Query("SELECT * FROM calorie_table")
     fun getAll(): List<CalorieEntity>
 
-    @Query("SELECT * FROM calorie_table WHERE `name` = (:name) ")
-    fun getCriminalEntity(name: String): CalorieEntity
+    @Query("SELECT * FROM calorie_table WHERE `type` = (:type) ")
+    fun getCalorieEntityByType(type: String): List<CalorieEntity>
+
 }

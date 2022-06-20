@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="array_gender">
+        <item>남</item>
+        <item>여</item>
+    </array>
+
+    <array name="array_exercise">
+        <item>가볍게 운동</item>
+        <item>적당히 운동</item>
+        <item>운동량이 많음</item>
+        <item>전혀 하지 않음</item>
+    </array>
+</resources>
