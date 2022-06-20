@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.splash.SplashActivity">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/food" />
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:autoSizeMaxTextSize="30dp"
+            android:autoSizeMinTextSize="10dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="음식 정보를 가져오는 중입니다.\n 잠시만 기다려 주세요.."
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".9" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

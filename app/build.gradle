@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -29,9 +32,20 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        dataBinding true
+    }
+
 }
 
 dependencies {
+
+    ext {
+        coroutines_Version = '1.5.2'
+        lottie_version = '4.1.0'
+        retrofit_version = '2.6.2'
+    }
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.2'
@@ -40,4 +54,52 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+
+    //coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_Version"
+
+    //Lottie
+    implementation "com.airbnb.android:lottie:$lottie_version"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+}
+
+
+// JetPack 관련
+dependencies {
+
+    ext {
+        liveData_version = '2.3.0'
+        viewModel_version = '2.3.0'
+        lifeCycle_version = '2.3.0'
+        room_version = '2.3.0'
+        activity_version = '1.2.2'
+        fragment_version = '1.2.2'
+        billing_version = '3.0.0'
+        hilt_version = '2.38.1'
+    }
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$viewModel_version"
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$liveData_version"
+    // Lifecycles only (without ViewModel or LiveData)
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifeCycle_version"
+
+    //Room
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    kapt "org.xerial:sqlite-jdbc:3.34.0"
+
+    //ktx
+    implementation "androidx.fragment:fragment-ktx:$activity_version"
+    implementation "androidx.activity:activity-ktx:$fragment_version"
 }
