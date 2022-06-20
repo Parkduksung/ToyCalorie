@@ -47,6 +47,17 @@ class CalorieUtil {
         }
     }
 
+    fun getKcal(totalCalorie: Double?): String {
+        return totalCalorie?.let {
+
+            val oneMealMin = ((it / 3) - (it / 3) / 10).toInt()
+            val oneMealMax = ((it / 3) + (it / 3) / 10).toInt()
+
+            "${oneMealMin}Kcal ~ ${oneMealMax}Kcal"
+
+        } ?: ""
+    }
+
     companion object {
         private const val GENDER_MAIL = 0
     }

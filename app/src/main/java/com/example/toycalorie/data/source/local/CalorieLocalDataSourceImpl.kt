@@ -28,6 +28,14 @@ class CalorieLocalDataSourceImpl @Inject constructor(private val calorieDao: Cal
             }
         }
 
+    override suspend fun getLocalCalorieList(type: String): Result<List<CalorieEntity>> {
+        return try {
+            Result.Success(calorieDao.getCalorieEntityByType(type))
+        } catch (e: Exception) {
+            Result.Error(Exception("Error getAllSSGEntity!"))
+        }
+    }
+
     private suspend fun registerAll(list: List<CalorieEntity>): Boolean {
         var isAllSave = true
         list.forEach {

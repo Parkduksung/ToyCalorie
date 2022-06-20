@@ -8,4 +8,6 @@ interface CalorieLocalDataSource {
     suspend fun getLocalCalorieList(): Result<List<CalorieEntity>>
 
     suspend fun registerCalorieEntityList(entityList: List<CalorieEntity>): Boolean
+
+    suspend fun getLocalCalorieList(type: String): Result<List<CalorieEntity>>
 }

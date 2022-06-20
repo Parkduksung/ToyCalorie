@@ -20,4 +20,7 @@ class CalorieRepositoryImpl @Inject constructor(
 
     override suspend fun registerCalorieEntityList(entityList: List<CalorieEntity>): Boolean =
         calorieLocalDataSource.registerCalorieEntityList(entityList)
+
+    override suspend fun getLocalCalorieList(type: String): Result<List<CalorieEntity>> =
+        calorieLocalDataSource.getLocalCalorieList(type)
 }

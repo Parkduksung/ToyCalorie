@@ -1,6 +1,7 @@
 package com.example.toycalorie.ui.grocery
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
@@ -9,9 +10,11 @@ import com.example.toycalorie.R
 import com.example.toycalorie.base.BaseActivity
 import com.example.toycalorie.databinding.ActivityGroceryBinding
 import com.example.toycalorie.ext.hideKeyboard
+import com.example.toycalorie.ext.showToast
 import com.example.toycalorie.ext.textChanges
 import com.example.toycalorie.ui.adapter.GroceryAdapter
 import com.example.toycalorie.ui.calculate.CalculateViewModel
+import com.example.toycalorie.ui.recommand.RecommendActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.debounce
@@ -45,6 +48,9 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>(R.layout.activity_g
 
         with(binding) {
             rvGrocery.adapter = groceryAdapter
+            tvYield.setOnClickListener {
+                groceryViewModel.yield(selectGrocerySet.toList())
+            }
         }
 
         groceryAdapter.setOnItemClickListener { item ->
@@ -84,6 +90,21 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>(R.layout.activity_g
             is GroceryViewState.GetGroceryList -> {
                 groceryAdapter.addAll(viewState.list)
             }
+
+            is GroceryViewState.RouteRecommend -> {
+                val intent = Intent(this, RecommendActivity::class.java).apply {
+                    putStringArrayListExtra(
+                        RecommendActivity.KEY_SELECT_GROCERY_LIST,
+                        viewState.list
+                    )
+                    putExtra(RecommendActivity.KEY_TOTAL_CALORIE, totalCalorie)
+                }
+                startActivity(intent)
+            }
+
+            is GroceryViewState.InvalidYield -> {
+                showToast(message = "3개 이상 식료품을 선택하세요.")
+            }
         }
     }
 
@@ -101,6 +122,5 @@ class GroceryActivity : BaseActivity<ActivityGroceryBinding>(R.layout.activity_g
     companion object {
         const val KEY_HUMAN = "key_human"
         const val KEY_TOTAL_CALORIE = "key_total_calorie"
-        private const val SEARCH_DEBOUNCE_TIME = 1500L
     }
 }

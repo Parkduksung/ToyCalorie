@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="calorie"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -12,6 +15,36 @@
         android:layout_height="match_parent"
         tools:context=".ui.recommand.RecommendActivity">
 
+        <TextView
+            android:id="@+id/content_calorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="한끼에 섭취할수 있는 칼로리 범위"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{calorie}"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/content_calorie"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".0" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"

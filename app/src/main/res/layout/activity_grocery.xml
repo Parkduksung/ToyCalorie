@@ -29,7 +29,7 @@
 
 
         <TextView
-            android:id="@+id/yield"
+            android:id="@+id/tv_yield"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -59,7 +59,7 @@
             android:gravity="center_vertical"
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/rv_grocery"
-            app:layout_constraintEnd_toEndOf="@id/yield"
+            app:layout_constraintEnd_toEndOf="@id/tv_yield"
             app:layout_constraintStart_toStartOf="@id/content_grocery"
             app:layout_constraintTop_toBottomOf="@id/content_grocery" />
 

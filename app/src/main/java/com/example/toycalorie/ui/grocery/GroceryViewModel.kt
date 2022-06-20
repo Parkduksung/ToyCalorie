@@ -20,7 +20,7 @@ class GroceryViewModel @Inject constructor(
         renewGroceryList()
     }
 
-    fun renewGroceryList() {
+    private fun renewGroceryList() {
         ioScope {
 
             when (val result = calorieRepository.getLocalCalorieList()) {
@@ -43,6 +43,17 @@ class GroceryViewModel @Inject constructor(
                 }
 
             }
+        }
+    }
+
+    fun yield(list: List<String>) {
+        if (list.size >= 3) {
+            val toArrayList = arrayListOf<String>()
+            list.forEach { toArrayList.add(it) }
+
+            viewStateChanged(GroceryViewState.RouteRecommend(toArrayList))
+        } else {
+            viewStateChanged(GroceryViewState.InvalidYield)
         }
     }
 }
