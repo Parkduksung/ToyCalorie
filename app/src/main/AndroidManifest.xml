@@ -34,7 +34,8 @@
             android:launchMode="singleTask" />
         <activity
             android:name=".ui.grocery.GroceryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:launchMode="singleTask" />
         <activity
             android:name=".ui.recommand.RecommendActivity"
             android:exported="false" />

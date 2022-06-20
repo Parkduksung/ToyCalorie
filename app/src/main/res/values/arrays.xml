@@ -11,4 +11,10 @@
         <item>운동량이 많음</item>
         <item>전혀 하지 않음</item>
     </array>
+
+    <array name="array_food">
+        <item>밥류</item>
+        <item>국/면류</item>
+        <item>반찬류</item>
+    </array>
 </resources>

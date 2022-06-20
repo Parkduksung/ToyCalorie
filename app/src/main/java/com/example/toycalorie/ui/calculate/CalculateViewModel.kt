@@ -1,6 +1,7 @@
 package com.example.toycalorie.ui.calculate
 
 import android.app.Application
+import android.os.Parcelable
 import androidx.lifecycle.MutableLiveData
 import com.example.toycalorie.base.BaseViewModel
 import com.example.toycalorie.constant.ItemType
@@ -8,6 +9,7 @@ import com.example.toycalorie.ext.ioScope
 import com.example.toycalorie.util.CalorieUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.async
+import kotlinx.parcelize.Parcelize
 import javax.inject.Inject
 
 @HiltViewModel
@@ -108,11 +110,12 @@ class CalculateViewModel @Inject constructor(app: Application) : BaseViewModel(a
         const val INIT_POSITION = 0
     }
 
+    @Parcelize
     data class Human(
         val height: Int,
         val weight: Int,
         val age: Int,
         val exercise: Int,
         val gender: Int
-    )
+    ) : Parcelable
 }

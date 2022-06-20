@@ -12,5 +12,69 @@
         android:layout_height="match_parent"
         tools:context=".ui.grocery.GroceryActivity">
 
+        <TextView
+            android:id="@+id/content_grocery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="선택한 재료"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".0" />
+
+
+        <TextView
+            android:id="@+id/yield"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/bg_round_corners"
+            android:gravity="center"
+            android:text="결과 보기"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias=".0"
+            app:layout_constraintWidth_percent=".25" />
+
+        <TextView
+            android:id="@+id/tv_select_grocery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:autoSizeMaxTextSize="14dp"
+            android:autoSizeMinTextSize="5dp"
+            android:autoSizePresetSizes="14dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/rv_grocery"
+            app:layout_constraintEnd_toEndOf="@id/yield"
+            app:layout_constraintStart_toStartOf="@id/content_grocery"
+            app:layout_constraintTop_toBottomOf="@id/content_grocery" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_grocery"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:foregroundGravity="center"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent=".8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1"
+            app:spanCount="3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

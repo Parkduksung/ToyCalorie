@@ -1,5 +1,6 @@
 package com.example.toycalorie.ui.calculate
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.activity.viewModels
@@ -10,6 +11,7 @@ import com.example.toycalorie.ext.hideError
 import com.example.toycalorie.ext.hideKeyboard
 import com.example.toycalorie.ext.showError
 import com.example.toycalorie.ui.calculate.CalculateViewModel.Companion.INIT_POSITION
+import com.example.toycalorie.ui.grocery.GroceryActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -89,7 +91,12 @@ class CalculateActivity : BaseActivity<ActivityCalculateBinding>(R.layout.activi
             }
 
             is CalculateViewState.RouteYield -> {
-                initUi()
+                val intent = Intent(this, GroceryActivity::class.java).apply {
+                    putExtra(GroceryActivity.KEY_HUMAN, viewState.human)
+                    putExtra(GroceryActivity.KEY_TOTAL_CALORIE, viewState.totalCalorie)
+                    flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(intent)
             }
         }
     }
