@@ -26,10 +26,6 @@ class RecommendActivity : BaseActivity<ActivityRecommendBinding>(R.layout.activi
             tab.text = resources.getStringArray(R.array.array_food)[position]
         }
 
-    private val food1List = mutableListOf<CalorieItem>()
-    private val food2List = mutableListOf<CalorieItem>()
-    private val food3List = mutableListOf<CalorieItem>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initUi()
