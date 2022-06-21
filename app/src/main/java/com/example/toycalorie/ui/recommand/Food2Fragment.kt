@@ -9,6 +9,7 @@ import com.example.toycalorie.base.BaseFragment
 import com.example.toycalorie.data.model.CalorieItem
 import com.example.toycalorie.databinding.FragmentFood2Binding
 import com.example.toycalorie.ui.adapter.FoodAdapter
+import com.example.toycalorie.ui.adapter.FoodItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -41,9 +42,18 @@ class Food2Fragment : BaseFragment<FragmentFood2Binding>(R.layout.fragment_food2
                 }
             } else {
                 if (recommendViewModel.isAddCalorieItem(item.calorieItem)) {
-                    selectFood2Set.add(item.calorieItem)
-                    foodAdapter.toggleItem(item) {
-                        recommendViewModel.getFood2List(selectFood2Set.toList())
+                    if (selectFood2Set.isNotEmpty()) {
+                        foodAdapter.toggleItem(FoodItem(selectFood2Set.first(), true)) {}
+                        selectFood2Set.clear()
+                        selectFood2Set.add(item.calorieItem)
+                        foodAdapter.toggleItem(item) {
+                            recommendViewModel.getFood2List(selectFood2Set.toList())
+                        }
+                    } else {
+                        selectFood2Set.add(item.calorieItem)
+                        foodAdapter.toggleItem(item) {
+                            recommendViewModel.getFood2List(selectFood2Set.toList())
+                        }
                     }
                 } else {
                     recommendViewModel.outOfRangeCalorie()
