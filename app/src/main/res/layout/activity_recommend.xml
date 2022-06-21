@@ -8,6 +8,23 @@
         <variable
             name="calorie"
             type="String" />
+
+        <variable
+            name="food1"
+            type="String" />
+
+        <variable
+            name="food2"
+            type="String" />
+
+        <variable
+            name="food3"
+            type="String" />
+
+        <variable
+            name="selectCalorie"
+            type="String" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,6 +49,7 @@
             app:layout_constraintVertical_bias=".0" />
 
         <TextView
+            android:id="@+id/content_total_calorie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,6 +64,118 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias=".0" />
 
+        <TextView
+            android:id="@+id/tv_food1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:autoSizeMaxTextSize="12dp"
+            android:autoSizeMinTextSize="5dp"
+            android:autoSizePresetSizes="12dp"
+            android:autoSizeTextType="uniform"
+            android:text="@{food1}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_food2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content_calorie"
+            app:layout_constraintWidth_percent=".7" />
+
+        <TextView
+            android:id="@+id/tv_food2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:autoSizeMaxTextSize="12dp"
+            android:autoSizeMinTextSize="5dp"
+            android:autoSizePresetSizes="12dp"
+            android:autoSizeTextType="uniform"
+            android:text="@{food2}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tv_food3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_food1"
+            app:layout_constraintWidth_percent=".7" />
+
+        <TextView
+            android:id="@+id/tv_food3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:autoSizeMaxTextSize="12dp"
+            android:autoSizeMinTextSize="5dp"
+            android:autoSizePresetSizes="12dp"
+            android:autoSizeTextType="uniform"
+            android:text="@{food3}"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toTopOf="@id/tabLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias=".0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_food2"
+            app:layout_constraintWidth_percent=".7" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="16dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_food3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_food1"
+            app:layout_constraintTop_toTopOf="@id/tv_food1">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/content1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:autoSizeMaxTextSize="12dp"
+                    android:autoSizeMinTextSize="5dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:text="선택한 총 칼로리"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHeight_percent=".3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias=".0" />
+
+                <TextView
+                    android:id="@+id/content_select_calorie"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:autoSizeMaxTextSize="15dp"
+                    android:autoSizeMinTextSize="5dp"
+                    android:autoSizeTextType="uniform"
+                    android:gravity="center"
+                    android:lines="1"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/holo_red_light"
+                    android:text="@{selectCalorie}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/content1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
@@ -53,7 +183,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent=".05"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias=".15" />
+            app:layout_constraintVertical_bias=".18" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

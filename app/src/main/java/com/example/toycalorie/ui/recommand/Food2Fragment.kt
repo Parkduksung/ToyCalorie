@@ -36,11 +36,18 @@ class Food2Fragment : BaseFragment<FragmentFood2Binding>(R.layout.fragment_food2
         foodAdapter.setOnItemClickListener { item ->
             if (item.isSelected) {
                 selectFood2Set.remove(item.calorieItem)
+                foodAdapter.toggleItem(item) {
+                    recommendViewModel.getFood2List(selectFood2Set.toList())
+                }
             } else {
-                selectFood2Set.add(item.calorieItem)
-            }
-            foodAdapter.toggleItem(item) {
-//                binding.tvSelectGrocery.text = selectGrocerySet.joinToString(", ")
+                if (recommendViewModel.isAddCalorieItem(item.calorieItem)) {
+                    selectFood2Set.add(item.calorieItem)
+                    foodAdapter.toggleItem(item) {
+                        recommendViewModel.getFood2List(selectFood2Set.toList())
+                    }
+                } else {
+                    recommendViewModel.outOfRangeCalorie()
+                }
             }
         }
     }

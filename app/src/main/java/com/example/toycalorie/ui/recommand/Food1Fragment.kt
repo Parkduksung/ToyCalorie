@@ -1,6 +1,7 @@
 package com.example.toycalorie.ui.recommand
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -36,11 +37,20 @@ class Food1Fragment : BaseFragment<FragmentFood1Binding>(R.layout.fragment_food1
         foodAdapter.setOnItemClickListener { item ->
             if (item.isSelected) {
                 selectFood1Set.remove(item.calorieItem)
+                foodAdapter.toggleItem(item) {
+                    recommendViewModel.getFood1List(selectFood1Set.toList())
+                }
             } else {
-                selectFood1Set.add(item.calorieItem)
-            }
-            foodAdapter.toggleItem(item) {
-//                binding.tvSelectGrocery.text = selectGrocerySet.joinToString(", ")
+
+                Log.d("결과", recommendViewModel.isAddCalorieItem(item.calorieItem).toString())
+                if (recommendViewModel.isAddCalorieItem(item.calorieItem)) {
+                    selectFood1Set.add(item.calorieItem)
+                    foodAdapter.toggleItem(item) {
+                        recommendViewModel.getFood1List(selectFood1Set.toList())
+                    }
+                } else {
+                    recommendViewModel.outOfRangeCalorie()
+                }
             }
         }
     }

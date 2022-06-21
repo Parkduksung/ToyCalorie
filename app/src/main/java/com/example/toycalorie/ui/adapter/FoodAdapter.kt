@@ -2,7 +2,9 @@ package com.example.toycalorie.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.toycalorie.R
 import com.example.toycalorie.data.model.CalorieItem
 import com.example.toycalorie.databinding.ItemFoodBinding
 
@@ -54,7 +56,31 @@ class FoodViewHolder(private val binding: ItemFoodBinding) : RecyclerView.ViewHo
 
 
     fun bind(item: FoodItem, onItemClick: (FoodItem) -> Unit) {
-        binding.item = item.calorieItem.name
+        with(binding) {
+            this.item = item.calorieItem.name
+
+            if (item.isSelected) {
+                tvName.setBackgroundResource(R.drawable.bg_grocery_selected)
+                tvName.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.white
+                    )
+                )
+            } else {
+                tvName.setBackgroundResource(R.drawable.bg_grocery_not_select)
+                tvName.setTextColor(
+                    ContextCompat.getColor(
+                        binding.root.context,
+                        R.color.black
+                    )
+                )
+            }
+        }
+
+        itemView.setOnClickListener {
+            onItemClick.invoke(item)
+        }
 
     }
 
